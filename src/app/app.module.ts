@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
 import { DishDetailsComponent } from './dish-details/dish-details.component';
+import {DishService} from './services/dish.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { DishDetailsComponent } from './dish-details/dish-details.component';
     MaterialModule,
     FlexLayoutModule
     ],
-  providers: [],
+  providers: [DishService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
