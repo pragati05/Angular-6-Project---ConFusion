@@ -3,25 +3,51 @@ Login
 <span class="flex-spacer"></span>
 <button md-button md-dialog-close>&times;</button>
 </md-toolbar>
-<form novalidate (ngSubmit)="onSubmit()">
+<form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
+
   <md-dialog-content>
   <p>
-    <md-input-container>
-      <input mdInput placeholder="Username" name="username" type="text" [(ngModel)]="user.username" required>
+    <md-input-container dividerColor="{{username.invalid && !username.pristine ?'warn':'primary'}}">
+      <input mdInput placeholder="Username"
+       name="username" 
+       type="text" 
+       #username = "ngModel" 
+       [(ngModel)]="user.username" required>
+
+       <md-hint>
+         <span [hidden]="username.pristine">
+         <span [hidden]="!username.errors?.required"> Username is required.</span>
+         </span>
+       </md-hint>
     </md-input-container>
   </p>
   <p>
-    <md-input-container>
-        <input mdInput placeholder="Password" name="password" type="Password"  [(ngModel)]="user.password"  required>
+
+    <md-input-container dividerColor="{{password.invalid && !username.pristine ?'warn':'primary'}}">
+        <input mdInput placeholder="Password" 
+        name="password" 
+        type="Password" 
+        #password = "ngModel"  
+        [(ngModel)]="user.password"  required>
+        
+       <md-hint>
+          <span [hidden]="password.pristine">
+          <span [hidden]="!password.errors?.required"> Password is required.</span>
+          </span>
+        </md-hint>
   </md-input-container>
   </p>
+
   <md-checkbox name="remember" [(ngModel)]="user.remember" >
     Remember Me
   </md-checkbox>
   </md-dialog-content>
+
   <md-dialog-actions>
     <span class="flex-spacer"></span>
     <button md-button md-dialog-close>Cancel</button>
-    <button type="submit" md-button class="background-primary text-floral-white">Submit</button>
+    <button type="submit" md-button class="background-primary text-floral-white"
+    [disabled]="loginForm.form.invalid">Login</button>
   </md-dialog-actions>
+
 </form>
