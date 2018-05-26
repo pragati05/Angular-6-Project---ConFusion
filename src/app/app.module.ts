@@ -5,6 +5,7 @@ import {MaterialModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 
+
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
 import { DishDetailsComponent } from './dish-details/dish-details.component';
@@ -17,7 +18,11 @@ import { ContactComponent } from './contact/contact.component';
 import {DishService} from './services/dish.service';
 import {PromotionService} from './services/promotion.service';
 import {LeaderService} from './services/leader.service';
-import { AppRoutingModule } from './app-routing/app-routing.module'
+import { AppRoutingModule } from './app-routing/app-routing.module';
+
+import { LoginComponent } from './login/login.component'
+import { FormsModule} from '@angular/forms'; 
+import {HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module'
     FooterComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
     
   ],
   imports: [
@@ -36,9 +42,12 @@ import { AppRoutingModule } from './app-routing/app-routing.module'
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpModule
     ],
   providers: [DishService,PromotionService,LeaderService],
+  entryComponents:[LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
