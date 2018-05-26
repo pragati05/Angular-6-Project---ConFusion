@@ -11,13 +11,23 @@ export class PromotionService {
   constructor() { }
   
   getPromotion (): Promise<Promotion[]> {
-    return Promise.resolve(PROMOTION);
+    
+    return new Promise(resolve =>{
+      // Simulate server latecy with 2 second delay
+      setTimeout(()=>resolve(PROMOTION),2000);
+    });
   }
   getPromotions(id: number): Promise<Promotion>{
-    return Promise.resolve(PROMOTION.filter((dish)=> dish.id === id)[0]);
+    return new Promise(resolve =>{
+      // Simulate server latecy with 2 second delay
+      setTimeout(()=>resolve(PROMOTION.filter((dish)=> dish.id === id)[0]),2000);
+    });
 
   }
   getFeaturedPromotion(): Promise<Promotion>{
-    return Promise.resolve(PROMOTION.filter((dish) => (dish.featured))[0]);
+    return new Promise(resolve =>{
+      // Simulate server latecy with 2 second delay
+      setTimeout(()=>resolve(PROMOTION.filter((dish) => (dish.featured))[0]),2000);
+    });
   }
 }
