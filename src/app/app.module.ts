@@ -21,7 +21,7 @@ import {LeaderService} from './services/leader.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { LoginComponent } from './login/login.component'
-import { FormsModule} from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule} from '@angular/forms'; 
 import {HttpModule } from '@angular/http';
 
 @NgModule({
@@ -44,6 +44,7 @@ import {HttpModule } from '@angular/http';
     FlexLayoutModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule
     ],
   providers: [DishService,PromotionService,LeaderService],
