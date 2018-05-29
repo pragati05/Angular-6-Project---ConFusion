@@ -51,6 +51,49 @@
           <p md-line>-- {{comment.author}}{{comment.date | date}}</p>
         </md-list-item>
 
+        <md-list *ngIf="commentForm.valid">
+            <md-list-item>
+              <h1 md-line> {{commentForm.get('comment').value}}  </h1>
+               <p md-line> {{commentForm.get('rating').value}} Stars</p>
+               <p md-line><span>-- {{commentForm.get('author').value}}</span> </p>
+             </md-list-item>
+        </md-list>
+        <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+          <p>
+            <md-input-container class="full-width"
+            dividerColor="{{(formError.author) ? 'warn' : 'primary'}}">
+             
+              <input mdInput placeholder="Name" type="text" 
+              formControlName="author"
+              required>
+              <span [hidden]="!(formError.author)">
+                {{ formError.author }}</span>
+            </md-input-container>
+          </p>
+          
+          <table>
+            <td>
+              <md-slider min="1" max="5" step="1" value="5" thumbLabel 
+              tickInterval="1" formControlName="rating" ></md-slider>
+            </td>
+          </table>
+          <p>
+              <md-input-container class="full-width"
+              dividerColor="{{( formError.comment) ? 'warn' : 'primary'}}">
+                <textarea mdInput placeholder="Your Comment" type="text" 
+                 rows="12" formControlName="comment" required>
+                </textarea>
+                <md-hint><span [hidden]="!(formError.comment)">
+                  {{ formError.comment }}</span></md-hint>
+              </md-input-container>
+          </p>
+
+          <p>
+            <button md-button class="background-primary text-floral-white"
+            type="submit"
+            [disabled]="commentForm.invalid">Submit</button>
+          </p>
+        </form>
       </md-list>
        
   </div>
